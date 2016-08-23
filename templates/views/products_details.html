@@ -1,0 +1,53 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding has-footer">
+<div class="list card" ng-repeat="product in product_data.items">
+    <div class="item">    
+        <h2>{{product.post_name}}</h2>       
+    </div>
+    <div class="item item-body" ng-show="product.image!=''">
+    	<img src="{{product_data.image_link}}thumb_{{product.image}}" alt="{{product.post_name}}">
+        <p>
+          {{product.description}}
+        </p>    
+    </div>
+    <div class="item item-icon-left positive">
+        <i class="icon ion-person"></i>
+        <strong>{{product.first_name}}</strong>
+    </div>
+    <div class="item item-icon-left positive">
+        <i class="icon ion-iphone"></i>
+        <strong>{{product.mobile}}</strong>
+    </div>
+    <div class="item item-icon-left positive" ng-show="product.phone!=''">
+        <i class="icon ion-iphone"></i>
+        <strong>{{product.phone}}</strong>
+    </div>
+    <div class="item item-icon-left positive">
+        <i class="icon ion-ios-pricetag"></i>
+        <strong>RS {{product.price}}</strong><span ng-if="product.quantity!=''"> (qty : {{product.quantity}} )</span>
+    </div>
+     <div class="item item-icon-left positive">
+        <i class="icon ion-location"></i>
+        {{product.location}},{{product.district}}
+     </div>
+     <div class="item">    
+     <a class="button button-block icon-left ion-ios7-telephone button-calm button-outline" ng-href="tel: {{product.mobile}}">Call Seller</a>
+
+     	
+     </div>
+    
+</div>
+
+
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-dark">
+  
+  <ion-nav-back-button class="button-clear">
+    			<i class="ion-arrow-left-c"></i> Back
+  			</ion-nav-back-button> 
+  
+</ion-footer-bar>
+
+
+
+</ion-view>

@@ -1,0 +1,77 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding has-footer">
+<!--Render a search form-->
+<div class="list">  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Search Keyword</span>    
+    <input type="text" placeholder="Type keyword" ng-model="product_data.keyword">
+  </label>
+  <span>
+  <a ng-href='#/app/products' ng-click="show_advanced_search()">Advanced Search</a>
+  </span>
+</div>
+<div class="list ng-hide" ng-show="product_data.show_advanced==1"> 
+  <label class="item item-input item-stacked-label">
+  	<span class="input-label">Select Category</span>  
+    <select  ng-model="product_data.category">    	
+        <option ng-repeat="category in product_data.items_category" value="{{category.category_id}}">{{category.category}}</option>
+    </select>
+  </label>
+  <label class="item item-input item-stacked-label">
+  	<span class="input-label">Select District</span>  
+    <select  ng-model="product_data.district">    	
+        <option ng-repeat="district in product_data.items_district" value="{{district.district_id}}">{{district.district}}</option>
+    </select>
+  </label> 
+  <label class="item item-input item-stacked-label">
+  	<input type="text" placeholder="Type place " ng-model="product_data.location_string" ng-keyup="get_locations()">
+   
+  </label>
+  <div class="list list-inset royal ng-hide" ng-show="product_data.show_auto==1">
+
+  <ion-item ng-repeat="place in product_data.items_places" ng-click="choose_location('{{place.location_id}}','{{place.location}}')">
+    {{place.location}}!
+  </ion-item>
+</div>
+  <input type="hidden" ng-model="product_data.location" value="" />  
+</div>
+<div class="list">
+    <button class="button button-block button-positive" ng-click="search_products()">
+      SEARCH PRODUCTS
+    </button>
+</div>
+
+
+{{keyword}}
+<!--Search Form-->
+<div class="list card" ng-repeat="product in product_data.items" ng-click="goto_product('{{product.classifieds_id}}')">
+    
+    
+    <div class="item item-thumbnail-left">
+     <img src="{{product_data.image_link}}thumb_{{product.image}}" alt="{{product.post_name}}">
+     <h2>{{product.post_name}}</h2>
+     <p class="positve">{{product.first_name}}</p>     
+  	</div>
+	<div class="item item-icon-left positive">
+    	<i class="icon ion-ios-pricetag"></i>
+    	<strong>RS {{product.price}}</strong><span ng-if="product.quantity!=''"> (qty : {{product.quantity}} )</span>
+ 	 </div>
+     <div class="item item-icon-left positive">
+    	<i class="icon ion-location"></i>
+    	{{product.location}},{{product.district}}
+ 	 </div>
+     <div class="item positive">
+    	<button class="button" ng-click="goto_product('{{product.classifieds_id}}')">More Details</button>
+ 	 </div>
+
+</div>
+<ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-dark">
+  
+  <ion-nav-back-button class="button-clear">
+    			<i class="ion-arrow-left-c"></i> Back
+  			</ion-nav-back-button> 
+  
+</ion-footer-bar>
+</ion-view>

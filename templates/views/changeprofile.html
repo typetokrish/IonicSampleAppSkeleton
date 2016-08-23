@@ -1,0 +1,93 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding has-footer">
+<!--Render a search form-->
+<form name="reg_form" novalidate>
+<div class="list ng-hide" ng-show="product_data.show_register==1">  
+
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your name</span>    
+    <input type="text" name="frm_name" placeholder="Enter your full name" autocomplete="off" required ng-model="form_data.name" maxlength="60">
+  </label>
+  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Email</span>    
+    <input type="email" name="frm_email" placeholder="Enter your Email Id" autocomplete="off" required ng-model="form_data.email" maxlength="90">
+  </label>
+  
+  
+  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Mobile</span>    
+    <input type="number" name="frm_mobile" placeholder="Enter your mobile " autocomplete="off" required ng-model="form_data.mobile" min="10"  maxlength="10">
+  </label>
+  
+ 
+ 
+  <label class="item item-input item-stacked-label">
+  	<span class="input-label">Your  District</span>  
+    <select  ng-model="form_data.district" name="frm_district" required>
+    <option value="">Select your district</option>    	
+        <option ng-repeat="district in product_data.items_district"   value="{{district.district_id}}" ng-select="district.district_id==form_data.district">{{district.district}}</option>
+    </select>
+  </label> 
+  <label class="item item-input item-stacked-label">
+  <span class="input-label">Your Location</span>  
+  	<input type="text" placeholder="Type place " autocomplete="off" name="frm_location_string" ng-model="form_data.location_string" ng-keyup="get_locations()">
+   
+  </label>
+  <div class="list list-inset royal ng-hide" ng-show="product_data.show_auto==1">
+
+  <ion-item ng-repeat="place in product_data.items_places" ng-click="choose_location('{{place.location_id}}','{{place.location}}')">
+    {{place.location}}!
+  </ion-item>
+</div>
+  <input type="hidden" ng-model="form_data.location" name="frm_location" required value="" />  
+</div>
+<div class="list">
+    <button class="button button-block button-positive" ng-click="save_user()"  ng-disabled="reg_form.$invalid">
+     CHANGE PROFILE
+    </button>
+</div>
+</form>
+<div class="padding">
+            <p ng-show="reg_form.frm_name.$error.required">* Name is required</p>
+            <p ng-show="reg_form.frm_email.$invalid || reg_form.frm_email.$error.required">* Enter valid email</p>
+            
+            
+            
+            
+            
+            <p ng-show="reg_form.frm_mobile.$error.required">* Mobile number required</p>
+            <p ng-show="reg_form.frm_mobile.$error.minlength">* Mobile number should be 10 digit</p>
+            
+            
+            <p ng-show="reg_form.frm_district.$error.required">* District required</p>
+            <p ng-show="reg_form.frm_location.$error.required">* Location required</p>
+            <p ng-show="form_data.error==1">* {{form_data.message}}</p>
+</div>
+
+
+<div class="list ng-hide" ng-show="product_data.show_login==1">
+  <div class="item item-icon-left">
+    <i class="icon ion-person"></i>
+    {{form_data.message}}
+  </div>
+  <div class="item">
+  	<button class="button button-block button-positive" ng-click="goto_home()">
+      GOTO HOME
+    </button>
+  </div>
+
+ 
+
+</div>
+
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-dark">
+  
+  <ion-nav-back-button class="button-clear">
+    			<i class="ion-arrow-left-c"></i> Back
+  			</ion-nav-back-button> 
+  
+</ion-footer-bar>
+</ion-view>

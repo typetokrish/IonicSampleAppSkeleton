@@ -1,0 +1,83 @@
+<ion-side-menus enable-menu-with-back-views="true">
+	<!--Menu Content View-->
+ 	<ion-pane ion-side-menu-content>
+      	<ion-nav-bar class="bar-stable bar-balanced">           
+          <ion-nav-buttons side="right">
+            <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+          </ion-nav-buttons>
+  		</ion-nav-bar>        
+    	<ion-nav-view name="menuContent" animation="slide-left-right">
+        </ion-nav-view>         
+  </ion-pane>
+  <!--Menu Content View-->
+  <!--Side Menu Items -->
+  
+      
+      <ion-side-menu side="right">
+        <header class="bar bar-header bar-dark">
+          <h1 class="title">Sample App </h1>
+        </header>
+        <ion-content class="has-header">
+          <!--Side menu items-->
+          <div class="list ng-hide" ng-show="parent.loggedStatus==1">
+              <a class="item item-icon-left" ui-sref="app.newproduct">
+                <i class="icon ion-ios-home"></i>
+                HOME
+              </a>            
+              <a class="item item-icon-left" ui-sref="app.products" ng-show="parent.loggedStatus==1">
+                <i class="icon ion-leaf"></i>
+                PRODUCTS               
+              </a>            
+          </div>
+          <div class="list ng-hide" ng-show="parent.loggedStatus==1">
+          <div class="item item-divider">
+           Account Menu
+          </div>
+              <a class="item item-icon-left" ui-sref="app.newproduct">
+                <i class="icon ion-plus-circled"></i>
+                Add Product
+              </a>
+            
+              <a class="item item-icon-left" ui-sref="app.myproducts">
+                <i class="icon ion-ios-rose"></i>
+                My Products
+                
+              </a>
+            
+              
+              <a class="item item-icon-left" ui-sref="app.changeprofile">
+                <i class="icon ion-person"></i>
+                Change Profile
+               
+              </a>
+              <a class="item item-icon-left" ui-sref="app.changepassword">
+                <i class="icon ion-ios-gear"></i>
+                Change Password
+               
+              </a>
+              <a class="item item-icon-left" ui-sref="app.logout">
+                <i class="icon ion-power"></i>
+                Logout
+               
+              </a> 
+                
+            
+            </div>
+            <div class="list ng-hide" ng-show="parent.loggedStatus==0">
+              
+               <a class="item item-icon-left" ui-sref="app.register">
+                <i class="icon ion-power"></i>
+                Register
+               
+              </a> 
+               <a class="item item-icon-left" ui-sref="app.login">
+                <i class="icon ion-power"></i>               Login
+               
+              </a>            
+            
+            </div>
+          <!--Side menu Items here-->
+        </ion-content>
+      </ion-side-menu>
+     <!--Side Menu Items -->
+</ion-side-menus>

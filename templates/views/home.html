@@ -1,0 +1,21 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding has-footer">
+<div class="list" ng-repeat="category in items">
+    <a class="item item-avatar" ng-click="goto_products('{{category.category_id}}','{{category.category}}')">
+      <img src="{{image_link}}thumb_{{category.image}}" alt="{{category.description}}">
+      <h2>{{category.category}}</h2>
+      <p>{{category.description}}</p>
+    </a>
+
+
+</div>
+
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-dark">
+  
+  <ion-nav-back-button class="button-clear">
+    			<i class="ion-arrow-left-c"></i> Back
+  			</ion-nav-back-button> 
+  
+</ion-footer-bar>
+</ion-view>

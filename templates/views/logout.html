@@ -1,0 +1,25 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding has-footer">
+<div class="list ng-hide" ng-show="form_data.show_logout==1">  
+  <div class="item">
+  	<button class="button button-block button-positive" ng-click="logout()">
+      CLICK TO EXIT ACCOUNT
+    </button>
+  </div>
+</div>
+<div class="list ng-hide" ng-show="form_data.show_logout==0">  
+  <div class="item">
+  	<button class="button button-block button-positive" ng-click="go_home()">
+     GO TO HOME
+    </button>
+  </div>
+</div>
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-dark">
+  
+  <ion-nav-back-button class="button-clear">
+    			<i class="ion-arrow-left-c"></i> Back
+  			</ion-nav-back-button> 
+  
+</ion-footer-bar>
+</ion-view>

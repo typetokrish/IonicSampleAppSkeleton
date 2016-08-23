@@ -1,0 +1,51 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding has-footer">
+<!--Render a search form-->
+<form name="reg_form" novalidate>
+<div class="list ng-hide" ng-show="product_data.show_login==1">  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Email</span>    
+    <input type="email" name="frm_email" placeholder="Enter your Email Id" autocomplete="off" required ng-model="form_data.email" maxlength="90">
+  </label>  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Password</span>    
+    <input type="password" name="frm_password" placeholder="Enter password " autocomplete="off" required ng-model="form_data.password" maxlength="16">
+  </label>  
+</div>
+<div class="list">
+    <button class="button button-block button-positive" ng-click="login_user()"  ng-disabled="reg_form.$invalid">
+      LOGIN
+    </button>
+</div>
+</form>
+<div class="padding">            
+    <p ng-show="reg_form.frm_email.$invalid || reg_form.frm_email.$error.required">* Enter valid email</p>            
+    <p ng-show="reg_form.frm_password.$error.required">* Password is required</p>            
+    <p ng-show="form_data.error==1">* {{form_data.message}}</p>
+</div>
+
+
+<div class="list ng-hide" ng-show="product_data.show_home==1">
+  <div class="item item-icon-left">
+    <i class="icon ion-person"></i>
+    Your Login Success
+  </div>
+  <div class="item">
+  	<button class="button button-block button-positive" ng-click="goto_myhome()">
+      GOTO MYHOME
+    </button>
+  </div>
+
+ 
+
+</div>
+
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-dark">
+  
+  <ion-nav-back-button class="button-clear">
+    			<i class="ion-arrow-left-c"></i> Back
+  			</ion-nav-back-button> 
+  
+</ion-footer-bar>
+</ion-view>

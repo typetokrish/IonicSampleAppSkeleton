@@ -1,0 +1,128 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding has-footer">
+<!--Render a search form-->
+<form name="reg_form" novalidate>
+<div class="list ng-hide" ng-show="product_data.show_form==1">
+
+  <label class="item item-input item-stacked-label">
+  	<span class="input-label">Select Category</span>  
+    <select  ng-model="form_data.category" name="frm_category" required>    	
+        <option ng-repeat="category in product_data.items_category" value="{{category.category_id}}">{{category.category}}</option>
+    </select>
+  </label>
+
+ <label class="item item-input item-stacked-label">
+    <span class="input-label">Product</span>    
+    <input type="text" name="frm_postname" placeholder="Enter product name " autocomplete="off" required ng-model="form_data.postname" min="6"  maxlength="90">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Price</span>    
+    <input type="text" name="frm_price" placeholder="Enter product name " autocomplete="off" required ng-model="form_data.price">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Quantity</span>    
+    <input type="text" name="frm_qty" placeholder="Enter quantity " autocomplete="off"  ng-model="form_data.qty">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Description</span>    
+    <textarea name="frm_desc" placeholder="Enter description" required autocomplete="off"  ng-model="form_data.desc"></textarea>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your name</span>    
+    <input type="text" name="frm_name" placeholder="Enter your full name" autocomplete="off" required ng-model="form_data.name" maxlength="60">
+  </label>
+  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Email</span>    
+    <input type="email" name="frm_email" placeholder="Enter your Email Id" autocomplete="off" required ng-model="form_data.email" maxlength="90">
+  </label>
+  
+ 
+  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Mobile</span>    
+    <input type="number" name="frm_mobile" placeholder="Enter your mobile " autocomplete="off" required ng-model="form_data.mobile" min="10"  maxlength="10">
+  </label>
+  
+   <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Phone</span>    
+    <input type="number" name="frm_phone" placeholder="Enter phone " autocomplete="off" ng-model="form_data.phone" min="6" max="16" maxlength="16">
+  </label>
+  
+ 
+ 
+  <label class="item item-input item-stacked-label">
+  	<span class="input-label">Your  District</span>  
+    <select  ng-model="form_data.district" name="frm_district" required>
+    <option value="">Select your district</option>    	
+        <option ng-repeat="district in product_data.items_district" ng-selected="district.district_id==form_data.district"   value="{{district.district_id}}">{{district.district}}</option>
+    </select>
+  </label> 
+  <label class="item item-input item-stacked-label">
+  <span class="input-label">Your Location</span>  
+  	<input type="text" placeholder="Type place " autocomplete="off" name="frm_location_string" ng-model="form_data.location_string" ng-keyup="get_locations()">
+   
+  </label>
+  
+    <div class="list list-inset royal ng-hide" ng-show="product_data.show_auto==1">
+
+  <ion-item ng-repeat="place in product_data.items_places" ng-click="choose_location('{{place.location_id}}','{{place.location}}')">
+    {{place.location}}!
+  </ion-item>
+</div>
+  <input type="hidden" ng-model="form_data.location" name="frm_location" required value="" />{{form_data.location}}
+  </div>
+<div class="list" ng-show="product_data.show_form==1">
+    <button class="button button-block button-positive" ng-click="save_product()"  ng-disabled="reg_form.$invalid">
+      ADD PRODUCT
+    </button>
+</div>
+</form>
+<div class="padding">
+            <p ng-show="reg_form.frm_name.$error.required">* Name is required</p>
+            <p ng-show="reg_form.frm_email.$invalid || reg_form.frm_email.$error.required">* Enter valid email</p>            
+            
+            <p ng-show="reg_form.frm_mobile.$error.required">* Mobile number required</p>
+            <p ng-show="reg_form.frm_mobile.$error.minlength">* Mobile number should be 10 digit</p>
+            
+            
+            <p ng-show="reg_form.frm_district.$error.required">* District required</p>
+            <p ng-show="reg_form.frm_location.$error.required">* Location required</p>
+            <p ng-show="reg_form.frm_category.$error.required">* Category required</p>
+            <p ng-show="reg_form.frm_postname.$error.required">* Product required</p>
+            <p ng-show="reg_form.frm_price.$error.required">* Price required</p>
+            <p ng-show="reg_form.frm_desc.$error.required">* Description required</p>
+            
+            <p ng-show="form_data.error==1">* {{form_data.message}}</p>
+</div>
+
+
+<div class="list ng-hide" ng-show="product_data.show_form==0">
+  <div class="item item-icon-left">
+    <i class="icon ion-person"></i>
+    {{form_data.message}}
+  </div>
+  <div class="item ng-hide">
+  	<button class="button button-block button-positive" ng-click="goto_photo('{{form_data.id}}')">
+      ATTACH A PHOTO {{form_data.id}}
+    </button>
+  </div>
+  <div class="item">
+  	<button class="button button-block button-positive" ng-click="goto_myproducts()">
+      BROWSE MY PRODUCTS
+    </button>
+  </div>
+
+ 
+
+</div>
+
+</ion-content>
+<ion-footer-bar align-title="left" class="bar-dark">
+  
+  <ion-nav-back-button class="button-clear">
+    			<i class="ion-arrow-left-c"></i> Back
+  			</ion-nav-back-button> 
+  
+</ion-footer-bar>
+</ion-view>

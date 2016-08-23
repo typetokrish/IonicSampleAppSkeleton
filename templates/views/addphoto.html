@@ -1,0 +1,52 @@
+<ion-view view-title="{{page_title}}">
+<ion-content class="padding">
+<!--Render a search form-->
+<form name="reg_form" novalidate>
+<div class="list ng-hide" ng-show="product_data.show_form==1">
+
+  <label class="item item-input item-stacked-label">
+  	<span class="input-label">Select Category</span>  
+    <select  ng-model="form_data.category" name="frm_category" required>    	
+        <option ng-repeat="category in product_data.items_category" value="{{category.category_id}}">{{category.category}}</option>
+    </select>
+  </label>
+
+  
+    
+  
+  </div>
+<div class="list">
+    <button class="button button-block button-positive" ng-click="save_product()"  ng-disabled="reg_form.$invalid">
+      ADD PRODUCT
+    </button>
+</div>
+</form>
+<div class="padding">
+            <p ng-show="reg_form.frm_name.$error.required">* Name is required</p>
+            
+            
+            <p ng-show="form_data.error==1">* {{form_data.message}}</p>
+</div>
+
+
+<div class="list ng-hide" ng-show="product_data.show_form==0">
+  <div class="item item-icon-left">
+    <i class="icon ion-person"></i>
+    {{form_data.message}}
+  </div>  
+</div>
+<div class="item">
+<button class="button button-block button-positive" ng-click="goto_myproducts()">
+  BROWSE MY PRODUCTS
+</button>
+</div>
+<div class="item">
+ <ion-content>
+    <button class="button" ng-click="upload()">Upload From Assets</button>
+</ion-content>
+</div>
+
+
+
+</ion-content>
+</ion-view>
